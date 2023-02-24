@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/images/logo_reseaux_sociaux/livre.ico" type="image/x-icon">
+  <title>Menu</title>
+  <link rel="stylesheet" href='/stylesheets/menu.css' />
+  <link rel="stylesheet" href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <div class="site_title">
+          <h2>BookWorm</h2>
+          <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
+        </div>
+        <div class='openMenu'>
+          <a href="/">Accueil</a>
+          <a href="/connexion">Se connecter</Link>
+            </p>
+            <div class="panier_section">
+              <a href="/panier">Mon panier</a>
+              <p class="panier_section_paragraph">0</p>
+            </div>
+        </div>
+      </nav>
+    </header>
+    <main class="content">
+      <section class="article_h2">
+        <h1>Articles</h1>
+      </section>
+      <div class='article'>
+        <% products.map((item, i)=> { %>
+          <div class="item" key=<%=i %>>
+            <div class='picture_article'>
+              <picture>
+                <a
+                  href='/article?id=<%=i%>&title=<%=item.title%>&price=<%= item.price %>&img=<%= item.img %>&description=<%= item.description %>'><img
+                    src=<%=item.img %>/></a>
+              </picture>
+            </div>
+            <div class='h3_title'>
+              <h2>
+                <%= item.title %>
+              </h2>
+            </div>
+            <div class='h3_price'>
+              <h2>
+                <%= item.price %> €
+              </h2>
+            </div>
+            <div class='button_article'>
+              <button>Ajouter au panier</button>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; Copyright BookWorm 2023</p>
+      <div class='div_footer'>
+        <i><img src="/images/logo_reseaux_sociaux/logo-de-lapplication-facebook.png" /></i>
+        <i><img src="/images/logo_reseaux_sociaux/logo-instagram.png" /></i>
+        <i><img src="/images/logo_reseaux_sociaux//logo-linkedin.png" /></i>
+        <i><img src="/images/logo_reseaux_sociaux/signe-twitter.png" /></i>
+      </div>
+
+    </footer>
+  </div>
+</body>
+
+</html>
