@@ -1,0 +1,65 @@
+.inscription_h2 {
+  margin-top: 5vw;
+  text-align: center;
+}
+
+.form {
+    margin: auto;
+    border: thick double #eb9634;
+    border-radius: 20px;
+    width: 300px;
+    padding: 30px;
+  }
+
+  .inscription_link {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .form_email, .form_password, .form_input, .form_button, .form_prenom, .form_nom, .form_sexe, .form_adresse{
+    text-align: center;
+  }
+  
+  .form_button > button {
+    margin-top: 10px;
+  }
+  
+  .openMenu {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+  }
+
+  .panier {
+    background-color: #424242;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    padding: 4px;
+    width: 13px;
+    height: 13px;
+  }
+  
+  .panier_section {
+    display: flex;
+  }
+  
+  .panier_section p {
+    margin-left: 10px;
+    background-color: #424242;
+    color: #ffff;
+    border-radius: 20px;
+    padding: 4px;
+    font-size: 12px;
+  }
+  
+  .site_title {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .site_title img {
+    margin-left: 7px;
+  }
+  
+  

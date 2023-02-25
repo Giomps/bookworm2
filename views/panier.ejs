@@ -10,34 +10,25 @@
     <link rel="stylesheet" href='/stylesheets/style.css'/>
 </head>
 <body>
-    <header>
-        <nav>
-          <div class="site_title">
-            <h2>BookWorm</h2>
-            <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
-          </div>
-          <div class='openMenu'>
-            <a href="/">Accueil</a>
-            <a href="/connexion">Se connecter</Link></p>
-            <div class="panier_section">
-              <a href="/panier">Mon panier</a>
-              <p class="panier_section_paragraph">0</p>
-            </div>
-          </div>
-        </nav>
-      </header>
+  <div class="container">
+    <%- include('header') -%>
       <main class="container">
         <section class="title_panier">
             <h1>Panier</h1>
         </section>
         <section>
+          <% if(basket === []) {  %>
+            <div class="Panier">
+              <h3>Le panier est vide</h3>
+            </div>
+            <%  } else {  %>
           <%
           let total = 0
           basket.map((item, i) => {
           %>
           <div class='Panier'>
             <div class="panier_image" key=<%= i %>>
-              <img src=<%= item.img%> alt=""/>
+              <img src=<%= item.img %> alt=""/>
             </div>
           <div class="panier_item">
             <div class="panier_title">
@@ -66,14 +57,8 @@
           </div>
         </section>
        </main>
-      <footer>
-          <p>&copy; Copyright BookWorm 2023</p>
-          <div class='div_footer'>
-            <i><img src="/images/logo_reseaux_sociaux/logo-de-lapplication-facebook.png"/></i>
-            <i><img src="/images/logo_reseaux_sociaux/logo-instagram.png"/></i>
-            <i><img src="/images/logo_reseaux_sociaux//logo-linkedin.png"/></i>
-            <i><img src="/images/logo_reseaux_sociaux/signe-twitter.png" /></i>
-          </div>
-      </footer>
+       <% } %>
+       <%- include('footer') -%>
+    </div>
 </body>
 </html>

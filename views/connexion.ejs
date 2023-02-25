@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="shortcut icon" href="/images/logo_reseaux_sociaux/livre.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/stylesheets/connexion.css'/>
+    <link rel="stylesheet" href='/stylesheets/style.css'/>
+    <title>Connexion</title>
+</head>
+<body>
+    <div class="container">
+        <%- include('header') -%>
+    <main class="content">
+        <section class="connexion_h2">
+            <h1>Connexion</h1>
+        <section>
+        <form class='form' method="GET">
+            <div class='form_email'>
+                <label>Email</label>
+            </div>
+            <div class='form_input'>
+                <input type='email' placeholder='exemple@hotmail.fr' class="email"/>
+            </div>
+            <div class='form_password'>
+                <label>Mot de passe</label>
+            </div>
+            <div class='form_input'>
+                <input type='password' password='******' class="password" /><br/>
+            </div>
+            <div class='form_button'>
+                <input type="submit" value="Valider">
+            </div>
+        </form>
+        <div class="inscription_link">
+            <p>Vous n'avez pas de compte ? <a href="/inscription">cliquez ici !</a></p>
+        </div>
+    </section>
+</main>
+    <%- include('footer') -%>
+    </div>
+</body>
+</html>

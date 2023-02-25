@@ -53,28 +53,44 @@ let products = [
     }
   ]
 
-  let basket = [
-    {id: 1, title: "Neuromancien", price: 23.99, img:"/images/livre/neuromancien.png", quantity: 2},
-    {id: 2, title: "Berserk", price: 10.90, img:"/images/livre/Berserk.jpeg", quantity: 3},
-  ]
-
 app.get('/', function(req, res, next) {
     res.render('menu', {products: products})
 })
 
 app.get('/article', function(req, res, next) {
-    console.log(req.query.img)
+    console.log(req.query)
     let id = req.query.id; 
     let title= req.query.title;
     let price = req.query.price;
     let img = req.query.img;
     let description = req.query.description
-    res.render('article', {title: title, id : id, price: price, img: img, description: description })
+    res.render('article', {title, id, price, img, description})
 })
 
 app.get('/panier', function(req, res, next) {
-    res.render('panier', {basket: basket})
+    let basket = [{}]
+    if(basket === undefined) {
+        basket.push({
+            id: req.query.id,
+            title: req.query.title,
+            price: req.query.price,
+            img: req.query.img,
+            quantity: 1
+        })
+    } else {
+        basket = []
+    }
+    res.render('panier', {basket})
 })
+
+app.get('/connexion', function(req, res, next) {
+    res.render('connexion')
+})
+
+app.get('/inscription', function(req, res, next) {
+    res.render('inscription')
+})
+
 
 app.listen(3000, () => {
     console.log("Serveur lancé")
