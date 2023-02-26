@@ -9,38 +9,56 @@
   <link rel="stylesheet" href='/stylesheets/menu.css' />
   <link rel="stylesheet" href='/stylesheets/style.css' />
 </head>
-
 <body>
   <div class="container">
-    <%-  include('header')  -%>
+    <header>
+      <nav>
+        <div class="site_title">
+          <h2>BookWorm</h2>
+          <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
+        </div>
+        <div class='openMenu'>
+          <a href="/">Accueil</a>
+          <a href="/connexion">Se connecter</Link>
+            </p>
+            <div class="panier_section">
+              <a href="/panier">Mon panier</a>
+              <p class="panier_section_paragraph"><%= item %></p>
+            </div>
+        </div>
+      </nav>
+    </header>
     <main class="content">
       <section class="article_h2">
         <h1>Articles</h1>
       </section>
       <div class='article'>
-        <% products.map((item, i)=> { %>
-          <div class="item" key=<%= i %>>
+        <% for(let i = 0 ; i < products.length ; i++) { %>
+          <div class="item">
             <div class='picture_article'>
               <picture>
-                <a href='/article?id=<%=i%>&title=<%=item.title%>&price=<%= item.price %>&img=<%= item.img %>&description=<%= item.description %>'><img
-                    src=<%=item.img %>/></a>
+                <a href='/article?id=<%=i%>&title=<%=products[i].title%>&price=<%= products[i].price %>&img=<%= products[i].img %>&description=<%= products[i].description %>'><img
+                    src=<%=products[i].img %>/></a>
               </picture>
             </div>
             <div class='h3_title'>
               <h2>
-                <%= item.title %>
+                <%= products[i].title %>
               </h2>
             </div>
             <div class='h3_price'>
               <h2>
-                <%= item.price %> €
+                <%= products[i].price %> €
               </h2>
             </div>
             <div class='button_article'>
-              <button>Ajouter au panier</button>
+              <form action="/add" method="POST">
+                <input type="hidden" name="position" value="<%=i%>">
+                <button class="button">Ajouter au panier</button>
+              </form>
             </div>
           </div>
-          <% }) %>
+          <% } %>
       </div>
       </section>
     </main>

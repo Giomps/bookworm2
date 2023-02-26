@@ -11,7 +11,23 @@
 </head>
 <body>
   <div class="container">
-  <%- include('header') -%>
+    <header>
+        <nav>
+          <div class="site_title">
+            <h2>BookWorm</h2>
+            <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
+          </div>
+          <div class='openMenu'>
+            <a href="/">Accueil</a>
+            <a href="/connexion">Se connecter</Link>
+              </p>
+              <div class="panier_section">
+                <a href="/panier">Mon panier</a>
+                <p class="panier_section_paragraph"><%= item %></p>
+              </div>
+          </div>
+        </nav>
+      </header>
   <main class="content">
         <section class="title_article">
             <h1><%= title %></h1>

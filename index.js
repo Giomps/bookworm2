@@ -1,6 +1,9 @@
 const express = require('express')
-const app = express()
 let path = require('path')
+let session = require('express-session')
+const app = express()
+app.use(session({secret: 'a4f8071f-c873-4447-8ee2', resave: false,   saveUninitialized: false,}));
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
@@ -53,44 +56,39 @@ let products = [
     }
   ]
 
-app.get('/', function(req, res, next) {
-    res.render('menu', {products: products})
+app.get('/', function(req, res) {
+    if(req.session.basket == undefined) {
+        req.session.basket = []
+    }
+    res.render('menu', {products, item: req.session.basket.length})
 })
 
-app.get('/article', function(req, res, next) {
+app.post('/add', function(req, res) {
+    req.session.basket.push(products[req.body.position])
+    res.render('menu', {products, item: req.session.basket.length})
+})
+
+app.get('/panier', function(req, res) {
+    res.render('panier', {basket:req.session.basket, item:req.session.basket.length})
+})
+
+app.get('/article', function(req, res) {
     console.log(req.query)
     let id = req.query.id; 
     let title= req.query.title;
     let price = req.query.price;
     let img = req.query.img;
     let description = req.query.description
-    res.render('article', {title, id, price, img, description})
+    res.render('article', {title, id, price, img, description, item: req.session.basket.length})
 })
 
-app.get('/panier', function(req, res, next) {
-    let basket = [{}]
-    if(basket === undefined) {
-        basket.push({
-            id: req.query.id,
-            title: req.query.title,
-            price: req.query.price,
-            img: req.query.img,
-            quantity: 1
-        })
-    } else {
-        basket = []
-    }
-    res.render('panier', {basket})
-})
-
-app.get('/connexion', function(req, res, next) {
+app.get('/connexion', function(req, res) {
     res.render('connexion')
 })
 
-app.get('/inscription', function(req, res, next) {
+app.get('/inscription', function(req, res) {
     res.render('inscription')
 })
-
 
 app.listen(3000, () => {
     console.log("Serveur lancé")
