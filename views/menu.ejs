@@ -37,8 +37,8 @@
           <div class="item">
             <div class='picture_article'>
               <picture>
-                <a href='/article?id=<%=i%>&title=<%=products[i].title%>&price=<%= products[i].price %>&img=<%= products[i].img %>&description=<%= products[i].description %>'><img
-                    src=<%=products[i].img %>/></a>
+                <a href='/article?title=<%=products[i].title%>&price=<%= products[i].price %>&img=<%= products[i].img %>&description=<%= products[i].description %>'><img
+                    src=<%= products[i].img %>/></a>
               </picture>
             </div>
             <div class='h3_title'>
@@ -53,8 +53,8 @@
             </div>
             <div class='button_article'>
               <form action="/add" method="POST">
-                <input type="hidden" name="position" value="<%=i%>">
-                <button class="button">Ajouter au panier</button>
+                <input type="hidden" name="position" value="<%=i %>">                
+              <button class="button">Ajouter au panier</button>
               </form>
             </div>
           </div>
