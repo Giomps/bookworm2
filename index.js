@@ -118,12 +118,16 @@ app.post('/send', async function(req, res) {
 
         /* Si les mots de passe ne sont pas identiques, alors on affiche un message d'erreur    */
         if(req.body.password != req.body.password_second) {
-            message.push('Les mots de passe ne correspondent pas')
+           return message.push('Les mots de passe ne correspondent pas')
+        } else {
+            res.redirect('/welcome')
         }
 
         /* Si l'email inscrit est déjà utilisé, alors on envoie un message d'erreur */ 
         if(alreadyExist) {
-            message.push('Cet email est déjà utilisé. Veuillez en choisir un autre')
+            return message.push('Cet email est déjà utilisé. Veuillez en choisir un autre')
+        } else {
+            res.redirect('/welcome')
         }
 
         /* Si durant l'inscription, aucun message est affiché alors, on envoie le formulaire dans la base de données  */
@@ -143,13 +147,10 @@ app.post('/send', async function(req, res) {
 })
 
                               /* Client */
-
 app.get('/welcome', function(req, res) {
     res.render('welcome', {item: req.session.basket.length})
-})
-
+})                            
                               /* ERROR 404 */
-
 app.get('*', function(req, res) {
     res.render('404')
 })
