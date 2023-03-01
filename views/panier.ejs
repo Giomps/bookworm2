@@ -29,27 +29,32 @@
       </nav>
     </header>
       <main class="container">
-        <section class="title_panier">
-            <h1>Panier</h1>
-        </section>
         <section>
+          <% var total = 0 %>
+          <% if(item === 0) { %>
+            <h2>Le panier est vide</h2>
+          <% } else { %>
+            <section class="title_panier">
+              <h1>Panier</h1>
+          </section>
           <div class='Panier'>
-            <% for(let i = 0 ; i<basket.length ; i++) { %>
-              <% panier = panier + basket[i].price  %>
+            <% for(let i = 0 ; i < panier.length ; i++) {%>
+              <% total += panier[i].price %>
             <div class="panier_image">
-              <img src=<%= basket[i].img %> alt=""/>
+              <img src=<%= panier[i].img %> alt=""/>
             </div>
           <div class="panier_item">
             <div class="panier_title">
-              <h2><%= basket[i].title %></h3>
+              <h2><%= panier[i].title %></h3>
             </div>
             <div class="panier_price">
-              <h3><%= basket[i].price %> €</h3>
+              <h3><%= panier[i].price %> €</h3>
             </div>
           </div>
           </div>
+          <% } %>
           <div class="panier_total">
-            <h3>Prix total du panier : <%= panier %> €</h3>
+            <h3>Prix total du panier : <%= total %> €</h3>
           </div>
           <% } %>
         </section>

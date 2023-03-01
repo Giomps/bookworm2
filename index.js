@@ -1,16 +1,25 @@
+// Se connecter sur mongoDB
+require('./database/connexion')
 const express = require('express')
+let app = express()
 let path = require('path')
 let session = require('express-session')
-const app = express()
+let clientModel = require('./models/client')
+// Crypter les mots de passe
+let bcrypt = require('bcryptjs')
+
 app.use(session({secret: 'a4f8071f-c873-4447-8ee2', resave: false,   saveUninitialized: false,}));
 
-
+/* Pour accéder au serveur  */
+app.use(express.urlencoded({extended: false}))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 
+                    
+                            /* Les produits */
 let products = [ 
     {
         title: "Blade Runner",
@@ -49,7 +58,10 @@ let products = [
         img:'/images/livre/onepiece.jpeg'
     }
   ]
-
+                     
+                         /* Internaute  */
+   
+/* Initier la session */ 
 app.get('/', function(req, res) {
     if(req.session.basket == undefined) {
         req.session.basket = []
@@ -57,15 +69,18 @@ app.get('/', function(req, res) {
     res.render('menu', {products, item: req.session.basket.length})
 })
 
+/* Ajouter des articles sur le panier */
 app.post('/add', function(req, res) {
     req.session.basket.push(products[req.body.position])
     res.render('menu', {products, item: req.session.basket.length})
 })
 
+/* Affiche les articles du panier */
 app.get('/panier', function(req, res) {
-    res.render('panier', {basket:req.session.basket, item:req.session.basket.length})
+    res.render('panier', {panier:req.session.basket, products, item:req.session.basket.length})
 })
 
+/* Affiche un produit en détail */
 app.get('/article', function(req, res) {
     console.log(req.query)
     let title= req.query.title;
@@ -75,14 +90,71 @@ app.get('/article', function(req, res) {
     res.render('article', {products, title, price, img, description, item: req.session.basket.length})
 })
 
-app.get('/connexion', function(req, res) {
-    res.render('connexion')
+/* Affiche la page de connexion */
+app.get('/connexion', async function(req, res) {
+    let emailExist = await clientModel.findOne({email: req.body.email})
+    let passwordExist = await clientModel.findOne({password: req.body.password}) 
+    res.render('connexion', {item:req.session.basket.length})
 })
 
+ /* Affiche la page d'inscription */
 app.get('/inscription', function(req, res) {
-    res.render('inscription')
+    res.render('inscription', {item: req.session.basket.length})
 })
 
+/* Envoyer le formulaire à la base de données */
+app.post('/send', async function(req, res) {
+
+        /* Recuperer un email existant dans le backend */
+        let alreadyExist = await clientModel.findOne({ email: req.body.email});
+        console.log(alreadyExist)
+
+        /* Générer le cryptage des mots de passe */
+        let salt = await bcrypt.genSalt()
+        let hash = await bcrypt.hash(req.body.password, salt)
+
+       /*  Initialisation du message d'erreur  */
+        let message = []
+
+        /* Si les mots de passe ne sont pas identiques, alors on affiche un message d'erreur    */
+        if(req.body.password != req.body.password_second) {
+            message.push('Les mots de passe ne correspondent pas')
+        }
+
+        /* Si l'email inscrit est déjà utilisé, alors on envoie un message d'erreur */ 
+        if(alreadyExist) {
+            message.push('Cet email est déjà utilisé. Veuillez en choisir un autre')
+        }
+
+        /* Si durant l'inscription, aucun message est affiché alors, on envoie le formulaire dans la base de données  */
+        if(message.length === 0){
+            let newClient = new clientModel({
+              nom: req.body.nom,
+              prenom: req.body.prenom,
+              gender: req.body.gender,
+              address: req.body.address,
+              email: req.body.email,
+              password: hash
+            })
+            await newClient.save();
+            res.redirect('/welcome')
+        } 
+        res.render('inscription', {message, item:req.session.basket})
+})
+
+                              /* Client */
+
+app.get('/welcome', function(req, res) {
+    res.render('welcome', {item: req.session.basket.length})
+})
+
+                              /* ERROR 404 */
+
+app.get('*', function(req, res) {
+    res.render('404')
+})
+
+/* Lancer le localhost */
 app.listen(3000, () => {
     console.log("Serveur lancé")
 })
