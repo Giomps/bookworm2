@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/images/logo_reseaux_sociaux/livre.ico" type="image/x-icon">
-    <title>Article</title>
-    <link rel="stylesheet" href='/stylesheets/panier.css'/>
-    <link rel="stylesheet" href='/stylesheets/style.css'/>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/images/logo_reseaux_sociaux/livre.ico" type="image/x-icon">
+  <title>Article</title>
+  <link rel="stylesheet" href='/stylesheets/panier.css' />
+  <link rel="stylesheet" href='/stylesheets/style.css' />
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -19,47 +21,73 @@
         </div>
         <div class='openMenu'>
           <a href="/">Accueil</a>
-          <a href="/connexion">Se connecter</Link>
+          <a href="/connexion">Se connecter</a>
+          <div class="panier_section">
+            <a href="/panier">Mon panier</a>
+            <p class="panier_section_paragraph">
+              <%= item %>
             </p>
-            <div class="panier_section">
-              <a href="/panier">Mon panier</a>
-              <p class="panier_section_paragraph"><%= item %></p>
-            </div>
+          </div>
         </div>
       </nav>
     </header>
-      <main class="container">
-        <section>
-          <% var total = 0 %>
-          <% if(item === 0) { %>
-            <h2>Le panier est vide</h2>
+    <main class="container">
+      <section>
+        <% if(item == 0) { %>
+          <h2>Le panier est vide</h2>
           <% } else { %>
             <section class="title_panier">
               <h1>Panier</h1>
-          </section>
-          <div class='Panier'>
-            <% for(let i = 0 ; i < panier.length ; i++) {%>
-              <% total += panier[i].price %>
-            <div class="panier_image">
-              <img src=<%= panier[i].img %> alt=""/>
-            </div>
-          <div class="panier_item">
-            <div class="panier_title">
-              <h2><%= panier[i].title %></h3>
-            </div>
-            <div class="panier_price">
-              <h3><%= panier[i].price %> €</h3>
-            </div>
-          </div>
-          </div>
-          <% } %>
-          <div class="panier_total">
-            <h3>Prix total du panier : <%= total %> €</h3>
-          </div>
-          <% } %>
-        </section>
-       </main>
-       <%- include('footer') -%>
-    </div>
+            </section>
+            <% var total= 0 %>
+              <% for(let i=0 ; i < basket.length ; i++) {%>
+                <% total += basket[i].price %>
+                  <div class='Panier'>
+                    <div class="panier_image">
+                      <img src=<%=basket[i].img %> alt=""/>
+                    </div>
+                    <div class="panier_item">
+                      <div class="panier_title">
+                        <h2>
+                          <%= basket[i].title %>
+                        </h2>
+                      </div>
+                      <div class="panier_price">
+                        <h2>
+                          <%= basket[i].price %> €
+                        </h2>
+                        <h3></h3>
+                      </div>
+                    </div>
+                    <div class="panier_quantity">
+                      <h2>quantité :</h2></br>
+                      <div class="quantity_change"> 
+                        <button class="minus">-</button>
+                        <h2>
+                          <%= basket[i].quantity %>
+                        </h2>
+                        <button class="plus">+</button>
+                      </div>
+                      </br>
+                      <div>
+                        <button>Supprimer</button>
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+                    <div class="panier_total">
+                      <h3>Prix total du panier : <%= total %> €</h3>
+                      <div class="button">
+                        <button>Valider le panier</button>
+                      </div>
+                    </div>
+                    <% } %>
+      </section>
+    </main>
+    <%- include('footer') -%>
+  </div>
 </body>
+<script>
+</script>
+
 </html>

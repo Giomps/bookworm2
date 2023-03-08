@@ -1,78 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="shortcut icon" href="/images/logo_reseaux_sociaux/livre.ico" type="image/x-icon">
-    <link rel="stylesheet" href='/stylesheets/connexion.css'/>
-    <link rel="stylesheet" href='/stylesheets/style.css'/>
+    <link rel="shortcut icon" href="/images/logo_reseaux_sociaux/livre.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/stylesheets/connexion.css' />
+    <link rel="stylesheet" href='/stylesheets/style.css' />
     <title>Connexion</title>
 </head>
+
 <body>
     <div class="container">
         <header>
             <nav>
-              <div class="site_title">
-                <h2>BookWorm</h2>
-                <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
-              </div>
-              <div class='openMenu'>
-                <a href="/">Accueil</a>
-                <a href="/connexion">Se connecter</Link>
-                  </p>
-                  <div class="panier_section">
-                    <a href="/panier">Mon panier</a>
-                    <p class="panier_section_paragraph"><%= item %></p>
-                  </div>
-              </div>
+                <div class="site_title">
+                    <h2>BookWorm</h2>
+                    <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
+                </div>
+                <div class='openMenu'>
+                    <a href="/">Accueil</a>
+                    <a href="/connexion">Se connecter</Link>
+                        </p>
+                        <div class="panier_section">
+                            <a href="/panier">Mon panier</a>
+                            <p class="panier_section_paragraph">
+                                <%= item %>
+                            </p>
+                        </div>
+                </div>
             </nav>
-          </header>
-    <main class="content">
-        <section class="connexion_h2">
-            <h1>Connexion</h1>
-        <section>
-        <form class='form' method="POST">
-            <div class='form_email'>
-                <label>Email</label>
-            </div>
-            <div class='form_input'>
-                <input type='email' name="email" placeholder='exemple@hotmail.fr' class="email"/>
-            </div>
-            </br>
-            <div class='form_password'>
-                <label>Mot de passe</label>
-            </div>
-            <div class='form_input'>
-                <input type='password' name="password" password='******' class="password" /></br>
-                <label>Voir le mot de passe</label>
-                <input type="checkbox" name="checkbox" class="checkbox">
-                <br/>
-            </div>
-        </br>
-            <div class='form_button'>
-                <input type="submit" value="Valider">
-            </div>
-        </form>
-        <div class="inscription_link">
-            <p>Vous n'avez pas de compte ? <a href="/inscription">cliquez ici !</a></p>
-        </div>
-    </section>
-</main>
-    <%- include('footer') -%>
+        </header>
+        <main class="content">
+            <section class="connexion_h2">
+                <h1>Connexion</h1>
+                <section>
+                      <% if (locals.message) { 
+                for(const m of message) {
+            %>
+                <p style="text-align: center;color:red">
+                    <%= m %>
+                </p>
+                <% } } %>
+                    <form class='form' action="/connexion" method="post">
+                        <div class='form_email'>
+                            <label>Email</label>
+                        </div>
+                        <div class='form_input'>
+                            <input required type='email' name="email" placeholder='exemple@hotmail.fr' class="email" />
+                        </div>
+                        </br>
+                        <div class='form_password'>
+                            <label>Mot de passe</label>
+                        </div>
+                        <div class='form_input'>
+                            <input required type='password' name="password" password='******' class="password" /></br>
+                            <label>Voir le mot de passe</label>
+                            <input type="checkbox" name="checkbox" class="checkbox">
+                            <br />
+                        </div>
+                        </br>
+                        <div class='form_button'>
+                            <input type="submit" value="Valider">
+                        </div>
+                    </form>
+                    <div class="inscription_link">
+                        <p>Vous n'avez pas de compte ? <a href="/inscription">cliquez ici !</a></p>
+                    </div>
+                </section>
+        </main>
+        <%- include('footer') -%>
     </div>
 </body>
-    <script>
-        let checkbox = document.querySelector('.checkbox')
-        let mdp = document.querySelector('.password')
+<script>
+    let checkbox = document.querySelector('.checkbox')
+    let mdp = document.querySelector('.password')
 
-        /* Si le checkbox est cliqué, alors on affiche le mot de passe */
-        checkbox.addEventListener('click', function() {
-            if(checkbox.checked === true) {
-                mdp.type = 'text'
-            } else {
-                mdp.type = 'password'
-            }
-        })
-    </script>
+    /* Si le checkbox est cliqué, alors on affiche le mot de passe */
+    checkbox.addEventListener('click', function () {
+        if (checkbox.checked === true) {
+            mdp.type = 'text'
+        } else {
+            mdp.type = 'password'
+        }
+    })
+</script>
+
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='/stylesheets/style.css' />
+    <title>Mon compte</title>
+</head>
+<body>
+     <div class="container">
+    <header>
+      <nav>
+        <div class="site_title">
+          <h2>BookWorm</h2>
+          <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
+          </br>
+        </div>
+          <div class='openMenu'>
+            <a href="/">Accueil</a>
+            <a href="/connexion">Se connecter</Link>
+              </p>
+              <div class="panier_section">
+                <a href="/panier">Mon panier</a>
+                <p class="panier_section_paragraph">
+                  <%= item %>
+                </p>
+              </div>
+          </div>
+      </nav>
+    </header>
+    <main class="content">
+      <div class='article'>
+        <div style="text-align: center;">
+            <h1>Mon compte</h1>
+        </div>
+        <div style="text-align: center;">
+            <a href="/logout">Se déconnecter</a>
+            <a href="/delete">Supprimer son compte</a>
+            <a href="/update">Modifer son compte</a>
+        </div>
+      </div>
+      </section>
+    </main>
+  </div>
+    <footer>
+        <%- include('footer') -%>
+    </footer>
+</body>
+</html>

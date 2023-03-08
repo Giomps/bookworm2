@@ -9,6 +9,6 @@ let clientSchema = mongoose.Schema({
     password: String
 });
 
-let clientModel = mongoose.model('client', clientSchema)
+let clientModel = mongoose.model('Client', clientSchema)
 module.exports = clientModel
 

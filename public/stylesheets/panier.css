@@ -100,9 +100,29 @@
     align-self: center;
   } 
 
-  .panier_price, .panier_quantité {
+  .panier_price, .panier_quantity {
     display: inline;
   }
+
+.panier_total, .panier_quantity {
+  text-align: center;
+  align-self: center;
+}
+
+.panier_total button {
+  margin-top: 12px;
+  height: 30px;
+}
+
+.quantity_change {
+  display: flex;
+  justify-content: space-around;
+}
+
+.quantity_change button {
+  height: 20px;
+  width: 20px;
+}
   
   
 @media (max-width: 650px) {

@@ -1,121 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/images/logo_reseaux_sociaux/livre.ico" type="image/x-icon">
-    <link rel="stylesheet" href='/stylesheets/style.css'/>
-    <link rel="stylesheet" href='/stylesheets/inscription.css'/>
+    <link rel="stylesheet" href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='/stylesheets/inscription.css' />
     <title>Inscription</title>
 </head>
+
 <body>
     <div class="container">
         <header>
             <nav>
-              <div class="site_title">
-                <h2>BookWorm</h2>
-                <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
-              </div>
-              <div class='openMenu'>
-                <a href="/">Accueil</a>
-                <a href="/connexion">Se connecter</Link>
-                  </p>
-                  <div class="panier_section">
-                    <a href="/panier">Mon panier</a>
-                    <p class="panier_section_paragraph"><%= item %></p>
-                  </div>
-              </div>
+                <div class="site_title">
+                    <h2>BookWorm</h2>
+                    <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
+                </div>
+                <div class='openMenu'>
+                    <a href="/">Accueil</a>
+                    <a href="/connexion">Se connecter</Link>
+                        </p>
+                        <div class="panier_section">
+                            <a href="/panier">Mon panier</a>
+                            <p class="panier_section_paragraph">
+                                <%= item %>
+                            </p>
+                        </div>
+                </div>
             </nav>
-          </header>
-      <section class="inscription_h2">
-        <h1>Inscription</h1>
-      </section>
-      <main class="content">
-        <%  if(locals.message) { 
-            for(m of message) {
-            %>
-        <p style="text-align: center;color:red"><%= m %></p>
-            <% }} %>
-        <form method='post' action="/send" class='form'>
-            <div class='form_nom'>
-                <label>Nom</label>
-            </div>
-            <div class='form_input'> 
-                <input required type="text" name="nom" class="nom" />
-            </div>
-            </br>
-            <div class='form_prenom'>
-                <label>Prenom</label>
-            </div>
-            <div class='form_input'>
-                <input required type='text' name='prenom' class="prenom" />
-            </div>
-            </br>
-            <div class='form_sexe'>
-                <label>Sexe</label>
-            </div>
-            <div class='form_input'>
-                <select name="gender" id="sexe">
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-                </select>
-            </div>
-            </br>
-            <div class='form_password'>
-                <label>Mot de passe</label>
-            </div>
-            <div class='form_input'>
-                <input required type="password" name='password' class="password" /></br>
-                <label>Voir le mot de passe</label>
-                <input type="checkbox" name="checkbox1" class="checkbox1">
-            </div>
-            </br>
-            <div class='form_password'>
-                <label>Confirmer le mot de passe</label>
-            </div>
-            <div class='form_input'>
-                <input required type="password" name='password_second' class="password_second"/>
-            </br>
-            <label>Voir le mot de passe</label>
-            <input type="checkbox" name="checkbox2" class="checkbox2">
-            </div>
-            </br>
-            <div class='form_adresse'>
-                <label>Adresse</label>
-            </div>
-            <div class='form_input'>
-                <input required type='text' name="address" class="adresse">
-            </div>
-            </br>
-            <div class='form_email'>
-                <label>Email</label>
-            </div>
-            <div class='form_input'>
-                <input required type='email' name='email' class="email" />
-            </div>
-            <br/>
-            <div class='form_button'>
-                <input required type="submit" value='Valider' />
-            </div>
-        </form>
-        <div class="inscription_link">
-            <p>Vous avez un compte ? <a href='/connexion'>cliquez ici !</a></p>
-        </div>
+        </header>
+        <section class="inscription_h2">
+            <h1>Inscription</h1>
         </section>
-    </main>
+        <main class="content">
+            <% if (locals.message) { %>
+                <p style="text-align: center;color:red">
+                    <%= message %>
+                </p>
+                <% }  %>
+                    <form method='post' action='/send' class='form'>
+                        <div class='form_nom'>
+                            <label>Nom</label>
+                        </div>
+                        <div class='form_input'>
+                            <input required type="text" name="nom" class="nom" />
+                        </div>
+                        </br>
+                        <div class='form_prenom'>
+                            <label>Prenom</label>
+                        </div>
+                        <div class='form_input'>
+                            <input required type='text' name='prenom' class="prenom" />
+                        </div>
+                        </br>
+                        <div class='form_sexe'>
+                            <label>Sexe</label>
+                        </div>
+                        <div class='form_input'>
+                            <select name="gender" id="sexe">
+                                <option value="homme">Homme</option>
+                                <option value="femme">Femme</option>
+                            </select>
+                        </div>
+                        </br>
+                        <div class='form_password'>
+                            <label>Mot de passe</label>
+                        </div>
+                        <div class='form_input'>
+                            <input required type="password" name='password' class="password" /></br>
+                            <label>Voir le mot de passe</label>
+                            <input type="checkbox" name="checkbox1" class="checkbox1">
+                        </div>
+                        </br>
+                        <div class='form_password'>
+                            <label>Confirmer le mot de passe</label>
+                        </div>
+                        <div class='form_input'>
+                            <input required type="password" name='password_second' class="password_second" />
+                            </br>
+                            <label>Voir le mot de passe</label>
+                            <input type="checkbox" name="checkbox2" class="checkbox2">
+                        </div>
+                        </br>
+                        <div class='form_adresse'>
+                            <label>Adresse</label>
+                        </div>
+                        <div class='form_input'>
+                            <input required type='text' name="address" class="adresse">
+                        </div>
+                        </br>
+                        <div class='form_email'>
+                            <label>Email</label>
+                        </div>
+                        <div class='form_input'>
+                            <input required type='email' name='email' class="email" />
+                        </div>
+                        <br />
+                        <div class='form_button'>
+                            <input required type="submit" value='Valider' />
+                        </div>
+                    </form>
+                    <div class="inscription_link">
+                        <p>Vous avez un compte ? <a href='/connexion'>cliquez ici !</a></p>
+                    </div>
+                    </section>
+        </main>
         <%- include('footer') -%>
     </div>
 </body>
-    <script>
+<script>
     let mdp = document.querySelector('.password')
     let mdp2 = document.querySelector('.password_second')
     let checkbox1 = document.querySelector('.checkbox1')
     let checkbox2 = document.querySelector('.checkbox2')
 
     /* Si le premier checkbox est cliqué, alors on affiche le mot de passe */
-    checkbox1.addEventListener('click', function() {
-        if(checkbox1.checked === true) {
+    checkbox1.addEventListener('click', function () {
+        if (checkbox1.checked === true) {
             mdp.type = 'text'
             click = true
         } else {
@@ -124,13 +128,14 @@
     })
 
     /* Si le dexuième checkbox est cliqué, alors on affiche le mot de passe confirmé  */
-    checkbox2.addEventListener('click', function() {
-        if(checkbox2.checked === true) {
+    checkbox2.addEventListener('click', function () {
+        if (checkbox2.checked === true) {
             mdp2.type = 'text'
             click = true
         } else {
             mdp2.type = 'password'
         }
     })
-    </script>
+</script>
+
 </html>
