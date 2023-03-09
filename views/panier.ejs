@@ -33,15 +33,15 @@
     </header>
     <main class="container">
       <section>
-        <% if(item == 0) { %>
+        <% if(item==0) { %>
           <h2>Le panier est vide</h2>
           <% } else { %>
             <section class="title_panier">
               <h1>Panier</h1>
             </section>
-            <% var total= 0 %>
+            <% var total=0 %>
               <% for(let i=0 ; i < basket.length ; i++) {%>
-                <% total += basket[i].price %>
+                <% total +=basket[i].price %>
                   <div class='Panier'>
                     <div class="panier_image">
                       <img src=<%=basket[i].img %> alt=""/>
@@ -60,17 +60,11 @@
                       </div>
                     </div>
                     <div class="panier_quantity">
-                      <h2>quantité :</h2></br>
-                      <div class="quantity_change"> 
-                        <button class="minus">-</button>
-                        <h2>
-                          <%= basket[i].quantity %>
-                        </h2>
-                        <button class="plus">+</button>
-                      </div>
-                      </br>
                       <div>
-                        <button>Supprimer</button>
+                        <form method="post" action="/delete">
+                          
+                          <button>Supprimer</button>
+                        </form>
                       </div>
                     </div>
                   </div>

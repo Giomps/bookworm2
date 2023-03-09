@@ -18,11 +18,6 @@
           <i><img style="height: 40px;width: 40px;" src="images/logo_reseaux_sociaux/livre.ico" /></i>
           </br>
         </div>
-        <% if(userOne.length != 0) { %>
-          <form method="post" action="/logout">
-            <button type="submit">Se déconnecter</button>
-          </form>
-          <% }%>
             <div class='openMenu'>
               <a href="/">Accueil</a>
               <a href="/connexion">Se connecter</Link>
@@ -30,7 +25,7 @@
                 <div class="panier_section">
                   <a href="/panier">Mon panier</a>
                   <p class="panier_section_paragraph">
-                    <%= item %>
+                    <%= item  %>
                   </p>
                 </div>
             </div>
@@ -72,5 +67,4 @@
     <%- include('footer') -%>
   </div>
 </body>
-
 </html>
